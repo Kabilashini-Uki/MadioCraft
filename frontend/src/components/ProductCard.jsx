@@ -1,7 +1,7 @@
 import React from 'react';
 import { Star, Heart, ShoppingCart } from 'lucide-react';
 
-export function ProductCard({ 
+export  default function ProductCard({ 
   image, 
   title, 
   creator, 

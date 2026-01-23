@@ -1,0 +1,134 @@
+.message-bubble {
+  display: flex;
+  margin-bottom: 20px;
+  max-width: 80%;
+}
+
+.message-bubble.current-user {
+  margin-left: auto;
+  flex-direction: row-reverse;
+}
+
+.message-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 12px;
+  margin-top: 5px;
+  border: 2px solid #8B4513;
+}
+
+.message-bubble.current-user .message-avatar {
+  margin-right: 0;
+  margin-left: 12px;
+}
+
+.message-content {
+  background: white;
+  border-radius: 18px;
+  padding: 12px 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.message-bubble.current-user .message-content {
+  background: #8B4513;
+  color: white;
+}
+
+.message-sender {
+  font-size: 12px;
+  font-weight: 600;
+  color: #7f8c8d;
+  margin-bottom: 4px;
+}
+
+.message-bubble.current-user .message-sender {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.message-text {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.message-attachments {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.attachment {
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f5f5f5;
+  border: 1px solid #e0e0e0;
+}
+
+.message-bubble.current-user .attachment {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.attachment-image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  display: block;
+}
+
+.attachment-caption {
+  font-size: 11px;
+  padding: 4px 8px;
+  color: #7f8c8d;
+  text-align: center;
+}
+
+.message-bubble.current-user .attachment-caption {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.message-time {
+  font-size: 11px;
+  color: #95a5a6;
+  text-align: right;
+  margin-top: 4px;
+}
+
+.message-bubble.current-user .message-time {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Chat bubble arrows */
+.message-content::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: -8px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 8px solid white;
+}
+
+.message-bubble.current-user .message-content::before {
+  left: auto;
+  right: -8px;
+  border-right: none;
+  border-left: 8px solid #8B4513;
+}
+
+@media (max-width: 768px) {
+  .message-bubble {
+    max-width: 90%;
+  }
+  
+  .attachment-image {
+    width: 80px;
+    height: 80px;
+  }
+}

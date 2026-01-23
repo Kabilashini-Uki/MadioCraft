@@ -1,0 +1,200 @@
+.chat-input-container {
+  padding: 20px;
+  background: white;
+  border-top: 1px solid #eaeaea;
+}
+
+.quick-design-options {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.quick-design-label {
+  font-size: 14px;
+  color: #7f8c8d;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.design-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.design-request-btn {
+  padding: 6px 12px;
+  background: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  font-size: 12px;
+  color: #5D4037;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.design-request-btn:hover {
+  background: #8B4513;
+  color: white;
+  border-color: #8B4513;
+}
+
+.chat-input-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.input-actions {
+  display: flex;
+  gap: 5px;
+}
+
+.input-action-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  color: #7f8c8d;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.input-action-btn:hover {
+  background: #8B4513;
+  color: white;
+  border-color: #8B4513;
+}
+
+.input-action-btn .recording {
+  color: #e74c3c;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.message-input-wrapper {
+  flex: 1;
+  position: relative;
+}
+
+.message-input {
+  width: 100%;
+  padding: 12px 50px 12px 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 25px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.message-input:focus {
+  outline: none;
+  border-color: #8B4513;
+  box-shadow: 0 0 0 2px rgba(139, 69, 19, 0.1);
+}
+
+.send-button {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #8B4513;
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.send-button:hover:not(:disabled) {
+  background: #5D4037;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.send-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Artisan Tools */
+.artisan-tools {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #eaeaea;
+}
+
+.tools-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  color: #8B4513;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.tool-buttons {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+}
+
+.tool-btn {
+  flex: 1;
+  padding: 10px;
+  background: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: #5D4037;
+}
+
+.tool-btn:hover {
+  background: #8B4513;
+  color: white;
+  border-color: #8B4513;
+  transform: translateY(-2px);
+}
+
+.tool-btn i {
+  font-size: 18px;
+}
+
+.tool-btn span {
+  font-size: 11px;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .design-buttons {
+    overflow-x: auto;
+    padding-bottom: 5px;
+  }
+  
+  .tool-buttons {
+    overflow-x: auto;
+    justify-content: flex-start;
+  }
+  
+  .tool-btn {
+    min-width: 70px;
+  }
+}

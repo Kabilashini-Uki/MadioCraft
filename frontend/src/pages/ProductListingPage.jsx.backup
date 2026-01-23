@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import '../style/ProductListingPage.css';
 
-
-
 const ProductListingPage = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);

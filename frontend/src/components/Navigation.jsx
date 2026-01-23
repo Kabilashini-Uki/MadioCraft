@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   Home, ShoppingBag, Users, Palette, BookOpen, GraduationCap, Info,
   User, Search, ShoppingCart, Menu, X, ChevronDown
@@ -9,6 +9,19 @@ export default function Navigation({ onPageChange, currentPage }) {
   const [showMegaMenu, setShowMegaMenu] = useState(false);
   const [showAccountMenu, setShowAccountMenu] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const dropdownRef = useRef(null);
+
+  // Close dropdown if click is outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowAccountMenu(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const navItems = [
     { icon: Home, label: 'Home', page: 'home' },
@@ -32,18 +45,7 @@ export default function Navigation({ onPageChange, currentPage }) {
         {/* Right - Nav Items */}
         <div className="flex items-center gap-4">
           {navItems.map(item => (
-            <div
-              key={item.label}
-              className="relative"
-              onMouseEnter={() => {
-                if (item.hasMegaMenu) setShowMegaMenu(true);
-                if (item.hasDropdown) setShowAccountMenu(false);
-              }}
-              onMouseLeave={() => {
-                if (item.hasMegaMenu) setShowMegaMenu(false);
-                if (item.hasDropdown) setShowAccountMenu(false);
-              }}
-            >
+            <div key={item.label} className="relative">
               <button
                 onClick={() => {
                   if (item.hasDropdown) {
@@ -52,14 +54,15 @@ export default function Navigation({ onPageChange, currentPage }) {
                     onPageChange(item.page);
                   }
                 }}
+                onMouseEnter={() => item.hasMegaMenu && setShowMegaMenu(true)}
+                onMouseLeave={() => item.hasMegaMenu && setShowMegaMenu(false)}
                 className={`px-4 py-2 rounded-lg flex items-center gap-2 transition-colors font-medium ${
                   currentPage === item.page ? 'bg-primary-50 text-primary-600' : 'text-gray-900 hover:bg-primary-50'
                 }`}
               >
                 {item.icon && <item.icon className="w-4 h-4" />}
                 <span>{item.label}</span>
-                {item.hasMegaMenu && <ChevronDown className="w-4 h-4" />}
-                {item.hasDropdown && <ChevronDown className="w-4 h-4" />}
+                {(item.hasMegaMenu || item.hasDropdown) && <ChevronDown className="w-4 h-4" />}
               </button>
 
               {/* Mega Menu */}
@@ -71,32 +74,27 @@ export default function Navigation({ onPageChange, currentPage }) {
 
               {/* Account Dropdown */}
               {item.hasDropdown && showAccountMenu && (
-                <div className="absolute top-full right-0 mt-2 w-48 bg-white rounded-xl shadow py-2">
-                  <button
-                    onClick={() => onPageChange('login')}
-                    className="block w-full px-4 py-2 hover:bg-primary-50"
-                  >
-                    Login
-                  </button>
-                  <button
-                    onClick={() => onPageChange('register')}
-                    className="block w-full px-4 py-2 hover:bg-primary-50"
-                  >
-                    Register
-                  </button>
-                  <div className="border-t border-gray-200 my-2"></div>
-                  <button
-                    onClick={() => onPageChange('buyer-dashboard')}
-                    className="block w-full px-4 py-2 hover:bg-primary-50"
-                  >
-                    Buyer Dashboard
-                  </button>
-                  <button
-                    onClick={() => onPageChange('creator-dashboard')}
-                    className="block w-full px-4 py-2 hover:bg-primary-50"
-                  >
-                    Creator Dashboard
-                  </button>
+                <div
+                  ref={dropdownRef}
+                  className="absolute top-full right-0 mt-2 w-48 bg-white rounded-xl shadow py-2 z-50"
+                >
+                  {[
+                    { label: 'Login', page: 'login' },
+                    { label: 'Register', page: 'register' },
+                    { label: 'Buyer Dashboard', page: 'buyer-dashboard' },
+                    { label: 'Creator Dashboard', page: 'creator-dashboard' },
+                  ].map(option => (
+                    <button
+                      key={option.label}
+                      onClick={() => {
+                        onPageChange(option.page);
+                        setShowAccountMenu(false);
+                      }}
+                      className="block w-full px-4 py-2 hover:bg-primary-50 text-left"
+                    >
+                      {option.label}
+                    </button>
+                  ))}
                 </div>
               )}
             </div>
@@ -141,3 +139,4 @@ export default function Navigation({ onPageChange, currentPage }) {
     </>
   );
 }
+

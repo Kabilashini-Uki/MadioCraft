@@ -1,6 +1,7 @@
+// HomePage.jsx
 import React from 'react';
 import { ArrowRight, Sparkles, TrendingUp, Users } from 'lucide-react';
-import { ProductCard } from '../components/ProductCard';
+import ProductCard from '../components/ProductCard';
 import { CreatorCard } from '../components/CreatorCard';
 import { ArtisanButton } from '../components/ArtisanButton';
 
